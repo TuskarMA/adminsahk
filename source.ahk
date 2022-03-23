@@ -25,8 +25,8 @@ Sleep 400
 WinMinimize
 
 ;Скрипт для обновления
-vers=0.11Beta
-buildscr = 5 ;НОМЕР БИЛДА. ОБЯЗАТЕЛЬНО ЦЕЛОЧИСЛЕННЫЙ
+vers=0.12Beta
+buildscr = 6 ;НОМЕР БИЛДА. ОБЯЗАТЕЛЬНО ЦЕЛОЧИСЛЕННЫЙ
 downlurl := "https://github.com/TuskarMA/adminsahk/blob/main/updtr.exe?raw=true"
 downllen := "https://github.com/TuskarMA/adminsahk/blob/main/verlen.ini?raw=true"
 Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
@@ -404,9 +404,9 @@ Gui, add, text, x10 y190, Убрать репорт:
 Gui, Add, Hotkey, x10 y210 w80 vHotKeyRemoveReport, %ovRemRep%
 DllCall("UxTheme.dll\SetWindowTheme", "Ptr", hLvItems, "WStr", "Explorer", "Ptr", 0)
 
-
 Gui, Show, x100 y100 w800 h600, GTA5RP Admin AHK v%vers%
 Gui, Submit, NoHide,
+SetTimer, reportsWorker, 200
 
 h=1
 loop 32
@@ -415,10 +415,7 @@ varKey:=varKey%h%
 HotKey, %varKey%, MyKey%h%, On, UseErrorLevel
 h:=h+1
 }
-return
 
-
-SetTimer, reportsWorker, 200
 return
 
 reportAdd:
