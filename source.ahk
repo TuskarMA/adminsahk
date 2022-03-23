@@ -25,8 +25,8 @@ Sleep 400
 WinMinimize
 
 ;Скрипт для обновления
-vers=0.1Beta
-buildscr = 4 ;НОМЕР БИЛДА. ОБЯЗАТЕЛЬНО ЦЕЛОЧИСЛЕННЫЙ
+vers=0.11Beta
+buildscr = 5 ;НОМЕР БИЛДА. ОБЯЗАТЕЛЬНО ЦЕЛОЧИСЛЕННЫЙ
 downlurl := "https://github.com/TuskarMA/adminsahk/blob/main/updtr.exe?raw=true"
 downllen := "https://github.com/TuskarMA/adminsahk/blob/main/verlen.ini?raw=true"
 Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
@@ -407,6 +407,15 @@ DllCall("UxTheme.dll\SetWindowTheme", "Ptr", hLvItems, "WStr", "Explorer", "Ptr"
 
 Gui, Show, x100 y100 w800 h600, GTA5RP Admin AHK v%vers%
 Gui, Submit, NoHide,
+
+h=1
+loop 32
+{
+varKey:=varKey%h%
+HotKey, %varKey%, MyKey%h%, On, UseErrorLevel
+h:=h+1
+}
+return
 
 
 SetTimer, reportsWorker, 200
@@ -1520,6 +1529,7 @@ IniWrite, %DEditR%, %hotkey_ini%, Text, DEditR%i%
 Iniwrite, %Check%, %hotkey_ini%, checkboxes, checkbox%i%
 i:=i+1
 }
+
 Iniwrite, %HotKeyVisibleOverlay%, %hotkey_ini%, HotKey, OverlayShow
 Iniwrite, %HotKeyDragOverlay%, %hotkey_ini%, HotKey, OverlayDrag
 Iniwrite, %HotKeyAddReport%, %hotkey_ini%, HotKey, ReportsAdd
