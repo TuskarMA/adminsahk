@@ -25,8 +25,8 @@ Sleep 400
 WinMinimize
 
 ;Скрипт для обновления
-vers=0.12Beta
-buildscr = 6 ;НОМЕР БИЛДА. ОБЯЗАТЕЛЬНО ЦЕЛОЧИСЛЕННЫЙ
+vers=0.13Beta
+buildscr = 7 ;НОМЕР БИЛДА. ОБЯЗАТЕЛЬНО ЦЕЛОЧИСЛЕННЫЙ
 downlurl := "https://github.com/TuskarMA/adminsahk/blob/main/updtr.exe?raw=true"
 downllen := "https://github.com/TuskarMA/adminsahk/blob/main/verlen.ini?raw=true"
 Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
@@ -419,7 +419,8 @@ h:=h+1
 return
 
 reportAdd:
-today:=A_Now
+today:=A_NowUTC
+today+= 3, h
 FormatTime, today_ddd, %today%, ddd
 if(today_ddd = "Вс") {
 Gui, ListView, lvtest
@@ -473,7 +474,8 @@ LV_Modify(1 , , , , , , , , valueToSet)
 return
 
 reportRemove:
-today:=A_Now
+today:=A_NowUTC
+today+= 3, h
 FormatTime, today_ddd, %today%, ddd
 if(today_ddd = "Вс") {
 Gui, ListView, lvtest
@@ -543,7 +545,16 @@ return
 
 reportsWorker:
 ;Начало подсчета истории и обнуление
-today:=A_Now
+
+today:=A_NowUTC
+today+= 3, h
+
+startDay:=A_NowUTC
+startDay+= 3, h
+
+endDay:=A_NowUTC
+endDay+= 3, h
+
 startDay += -7, Days
 endDay += -1, Days
 FormatTime, today_ddd, %today%, ddd
